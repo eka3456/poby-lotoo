@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>포비의 로또 번호 생성기</title>
+  <style>
+    body {
+      background-color: #f7f7f7;
+      font-family: Arial, sans-serif;
+    }
+
+    
+    h1 {
+  text-align: center;
+  margin-top: 50px;
+  color: #333;
+}
+
+p {
+  text-align: center;
+  font-size: 20px;
+  color: #555;
+}
+
+button {
+  display: block;
+  margin: 50px auto 20px;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  background-color: #3e3e3e;
+  color: #fff;
+  font-size: 20px;
+  cursor: pointer;
+  transition: background-color 0.3s ease-in-out;
+}
+
+button:hover {
+  background-color: #555;
+}
+
+#numbers {
+  text-align: center;
+  margin-top: 50px;
+}
+
+.ball {
+  display: inline-block;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  font-size: 24px;
+  line-height: 50px;
+  text-align: center;
+  margin: 5px;
+  transition: all 0.3s ease-in-out;
+  transform: scale(0.7);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  animation: bounce 1s ease-in-out;
+}
+
+.ball:nth-child(1) {
+  background-color: #ffa600;
+  color: #fff;
+}
+
+.ball:nth-child(2) {
+  background-color: #ff6363;
+  color: #fff;
+}
+
+.ball:nth-child(3) {
+  background-color: #f58500;
+  color: #fff;
+}
+
+.ball:nth-child(4) {
+  background-color: #0077c2;
+  color: #fff;
+}
+
+.ball:nth-child(5) {
+  background-color: #4ca64c;
+  color: #fff;
+}
+
+.ball:nth-child(6) {
+  background-color: #b15bff;
+  color: #fff;
+}
+
+.ball:hover {
+  transform: scale(1.2) rotate(360deg);
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3);
+}
+
+@keyframes bounce {
+  0% {
+    transform: scale(0.7);
+  }
+  50% {
+    transform: scale(1.2);
+  }
+  100% {
+    transform: scale(0.7);
+  }
+}
+  </style>
+</head>
+<body>
+  <h1>포비의 로또 번호 생성기</h1>
+  <p>아래 버튼을 눌러 로또 번호를 생성하세요!</p>
+  <button onclick="generateNumbers()">로또 번호 생성하기</button>
+  <p id="numbers"></p>
+
+  <script>
+    function generateNumbers() {
+      var numbers = [];
+      for (var i = 0; i < 6; i++) {
+        var num = Math.floor(Math.random() * 45) + 1;
+        while (numbers.includes(num)) {
+          num = Math.floor(Math.random() * 45) + 1;
+        }
+        numbers.push(num);
+      }
+      numbers.sort(function(a, b){return a-b});
+      var numbersHTML = "";
+      for (var i = 0; i < numbers.length; i++) {
+        numbersHTML += "<span class='ball'>" + numbers[i] + "</span>";
+      }
+      document.getElementById("numbers").innerHTML = "로또 번호는 : " + numbersHTML;
+    }
+  </script>
+</body>
+</html>
